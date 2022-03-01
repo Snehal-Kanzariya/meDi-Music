@@ -23,9 +23,10 @@ public class template_list extends AppCompatActivity {
         close_template.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Log.d("dddd","Test arrow");
                 Toast.makeText(getApplicationContext(),"close",Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                Intent i = new Intent(getApplicationContext(),template_list.class);
                 startActivity(i);
             }
         });

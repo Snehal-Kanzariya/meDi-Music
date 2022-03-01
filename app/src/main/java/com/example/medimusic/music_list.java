@@ -14,8 +14,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -23,11 +23,19 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class music_list extends AppCompatActivity {
 
     ImageView down_arrow;
-    CircleImageView civ1,civ2,civ3;
+    CircleImageView civ1, civ2, civ3;
+
+    enum PLACEHOLDER_STATE {
+        SELECTED_PLAY,
+        SELECTED_STOP,
+        UNSELECTED_PLAY,
+        UNSELECTED_STOP
+    }
 
     //declare circular imageview
-    int placeholder1,placeholder2,placeholder3;
+    int placeholder1, placeholder2, placeholder3;
 
+    Map<Integer, Enum> map = new HashMap<>();
 
     private SoundPool soundPool;
 
@@ -41,34 +49,48 @@ public class music_list extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_music_list);
+        setContentView(R.layout.activity_music_list_dialog);
 
-        civ1 =  findViewById(R.id.placeholder1);
-        civ2 =  findViewById(R.id.placeholder2);
-        civ3 =  findViewById(R.id.placeholder3);
+        civ1 = findViewById(R.id.placeholder1);
+        civ2 = findViewById(R.id.placeholder2);
+        civ3 = findViewById(R.id.placeholder3);
 
-        Log.w("","Test create");
+        map.put(R.id.placeholder1, PLACEHOLDER_STATE.SELECTED_STOP);
+        map.put(R.id.placeholder2, PLACEHOLDER_STATE.UNSELECTED_STOP);
+        map.put(R.id.placeholder3, PLACEHOLDER_STATE.UNSELECTED_STOP);
+
+        Log.w("", "Test create");
 
         civ1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("hhhhhhh","Test");
-                Toast.makeText(getApplicationContext(),"circular view clicked",Toast.LENGTH_SHORT).show();
+                Log.d("hhhhhhh", "Test");
 
+                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) civ1.getLayoutParams();
 
-                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)civ1.getLayoutParams();
-                params.width = 100;
-                params.height = 100;
+                Enum status = map.get(R.id.placeholder1);
+
+                if (status.equals(PLACEHOLDER_STATE.SELECTED_STOP)) {
+                    map.put(R.id.placeholder1, PLACEHOLDER_STATE.SELECTED_PLAY);
+                    params.width = 100;
+                    params.height = 100;
+                    civ1.setLayoutParams(params);
+                } else if (status.equals(PLACEHOLDER_STATE.SELECTED_PLAY)) {
+                    map.put(R.id.placeholder1, PLACEHOLDER_STATE.SELECTED_STOP);
+                    params.width = 80;
+                    params.height = 80;
+                }
                 civ1.setLayoutParams(params);
+                Toast.makeText(getApplicationContext(), "placeholder one clicked", Toast.LENGTH_SHORT).show();
             }
         });
         civ2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("hhhhhhh","Test");
-                Toast.makeText(getApplicationContext(),"circular view clicked",Toast.LENGTH_SHORT).show();
+                Log.d("hhhhhhh", "Test");
+                Toast.makeText(getApplicationContext(), "circular view clicked", Toast.LENGTH_SHORT).show();
 
-                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)civ2.getLayoutParams();
+                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) civ2.getLayoutParams();
                 params.width = 100;
                 params.height = 100;
                 civ2.setLayoutParams(params);
@@ -77,10 +99,10 @@ public class music_list extends AppCompatActivity {
         civ3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("hhhhhhh","Test");
-                Toast.makeText(getApplicationContext(),"circular view clicked",Toast.LENGTH_SHORT).show();
+                Log.d("hhhhhhh", "Test");
+                Toast.makeText(getApplicationContext(), "circular view clicked", Toast.LENGTH_SHORT).show();
 
-                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)civ3.getLayoutParams();
+                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) civ3.getLayoutParams();
                 params.width = 100;
                 params.height = 100;
                 civ3.setLayoutParams(params);
@@ -93,10 +115,10 @@ public class music_list extends AppCompatActivity {
         down_arrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.w("","Test arrow");
-                Log.d("","Test arrow");
-            Toast.makeText(getApplicationContext(),"arrow",Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                Log.w("", "Test arrow");
+                Log.d("", "Test arrow");
+                Toast.makeText(getApplicationContext(), "arrow", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i);
             }
         });
@@ -121,9 +143,10 @@ public class music_list extends AppCompatActivity {
         playList.put(R.id.btn3, false);
     }
 
-    public  void testClick(View view) {
-        Log.w("","Test button click ");
+    public void testClick(View view) {
+        Log.w("", "Test button click ");
     }
+
     public void playSound(View view) {
         Log.d("Test", "Enter into playSound");
         Integer key = view.getId();
@@ -150,11 +173,13 @@ public class music_list extends AppCompatActivity {
             soundPool.stop(getSoundTrackId(key));
         }
     }
+
     protected void onDestroy() {
         super.onDestroy();
         soundPool.release();
         soundPool = null;
     }
+
     private int getSoundTrack(int key) {
         if (key == R.id.btn1) {
             return placeholder1;
@@ -164,6 +189,7 @@ public class music_list extends AppCompatActivity {
             return placeholder3;
         }
     }
+
     private void setSoundTrackId(int key, int value) {
         if (key == R.id.btn1) {
             sound1 = value;
@@ -173,6 +199,7 @@ public class music_list extends AppCompatActivity {
             sound3 = value;
         }
     }
+
     private int getSoundTrackId(int key) {
         if (key == R.id.btn1) {
             return sound1;

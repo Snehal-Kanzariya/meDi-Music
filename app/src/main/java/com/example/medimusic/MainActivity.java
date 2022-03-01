@@ -23,7 +23,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     ImageView up_arrow;
-    ImageView template;
+
 
     Map<Integer, Boolean> playList = new HashMap<>();
 
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         up_arrow = findViewById(R.id.up_arrow);
-        template = findViewById(R.id.template);
+
 
         up_arrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,16 +42,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-        template.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"template clicked",Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(getApplicationContext(),template_list.class);
-                startActivity(i);
-            }
-        });
-
 
     }
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.209375" />
+        <entry key="app/src/main/res/drawable/circular.xml" value="0.15833333333333333" />
+        <entry key="app/src/main/res/drawable/circular_bordershape.xml" value="0.20615384615384616" />
+        <entry key="app/src/main/res/drawable/circular_image_bg.xml" value="0.15833333333333333" />
+        <entry key="app/src/main/res/drawable/fragment_menu_round.xml" value="0.20615384615384616" />
+        <entry key="app/src/main/res/drawable/image.xml" value="0.20615384615384616" />
+        <entry key="app/src/main/res/drawable/rounded_button.xml" value="0.209375" />
+        <entry key="app/src/main/res/drawable/selector_timer_bt_bg.xml" value="0.17037037037037037" />
+        <entry key="app/src/main/res/drawable/shape_timer_bt_bg.xml" value="0.17037037037037037" />
+        <entry key="app/src/main/res/drawable/timer.xml" value="0.16203703703703703" />
+        <entry key="app/src/main/res/drawable/timer_bt_bg.xml" value="0.17037037037037037" />
+        <entry key="app/src/main/res/drawable/up_arrow.xml" value="0.209375" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_music_list.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_music_list_dialog.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.17" />
+        <entry key="app/src/main/res/layout/activity_template_list.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/music_dialog.xml" value="0.1537037037037037" />
+        <entry key="app/src/main/res/layout/rounded_corners_button.xml" value="0.19322916666666667" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
